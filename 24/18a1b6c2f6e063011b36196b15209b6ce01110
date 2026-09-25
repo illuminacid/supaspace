@@ -1,0 +1,22 @@
+apps/docs/lib/octokit.auth.test.ts
+  s_9c18305fb35527::t_30c1838f05201a 46-54
+  s_9c18305fb35527::t_d269bb58f07fbe 45
+apps/docs/lib/octokit.auth.ts
+  s_9c18305fb35527::t_fc860636b693f5 47-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "2418a1b6c2f6e063011b36196b15209b6ce01110",
+  "prompts": {},
+  "sessions": {
+    "s_9c18305fb35527": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "94a39be5-a003-4d28-95b9-c7badf6d2fdb",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Dawid Kuder <luminacid@gmail.com>"
+    }
+  }
+}
