@@ -3,10 +3,10 @@
   "extends": ["//"],
   "tasks": {
     "lint": {
-      "env": ["GITHUB_TOKEN"],
+      "env": ["GH_TOKEN", "GITHUB_TOKEN"],
     },
     "typecheck": {
-      "env": ["GITHUB_TOKEN"],
+      "env": ["GH_TOKEN", "GITHUB_TOKEN"],
     },
     "build": {
       "dependsOn": ["^build"],
@@ -15,6 +15,7 @@
         "CI",
         "CF_ACCESS_CLIENT_ID",
         "CF_ACCESS_CLIENT_SECRET",
+        "GH_TOKEN",
         "GITHUB_TOKEN",
         "NEXT_PUBLIC_MISC_USE_URL",
         "NEXT_PUBLIC_MISC_USE_ANON_KEY",

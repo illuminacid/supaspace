@@ -18,6 +18,10 @@
         "DOCS_GITHUB_APP_ID",
         "DOCS_GITHUB_APP_INSTALLATION_ID",
         "DOCS_GITHUB_APP_PRIVATE_KEY",
+        // Local fallback (see octokit.auth.ts) — strict env mode won't pass these
+        // through to this specific task unless declared here too.
+        "GH_TOKEN",
+        "GITHUB_TOKEN",
       ],
     },
     // Generates the guide/reference .md files and manifest.json under public/markdown/.
