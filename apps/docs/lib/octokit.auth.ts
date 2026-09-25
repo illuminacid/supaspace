@@ -44,7 +44,10 @@ export function githubAuthOptions():
         installationId,
         // https://github.com/gr2m/universal-github-app-jwt?tab=readme-ov-file#converting-pkcs1-to-pkcs8
         privateKey: crypto
-          .createPrivateKey(privateKey)
+          // Some env var UIs (and scripted `vercel env add` calls) store a
+          // pasted PEM with literal `\n` escapes instead of real line breaks;
+          // a valid PEM never contains a literal backslash, so unescaping is safe.
+          .createPrivateKey(privateKey.replace(/\\n/g, '\n'))
           .export({ type: 'pkcs8', format: 'pem' })
           .toString(),
       },

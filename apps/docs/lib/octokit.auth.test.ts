@@ -43,6 +43,16 @@ describe('githubAuthOptions', () => {
     expect(options.auth.privateKey).toMatch(/^-----BEGIN PRIVATE KEY-----/)
   })
 
+  it('unescapes a private key stored with literal \\n instead of real newlines', () => {
+    stubEnv({
+      ...APP_ENV,
+      DOCS_GITHUB_APP_PRIVATE_KEY: PKCS1_PRIVATE_KEY.replace(/\n/g, '\\n'),
+    })
+    const options = githubAuthOptions()
+    if (!('authStrategy' in options)) throw new Error('expected App auth')
+    expect(options.auth.privateKey).toMatch(/^-----BEGIN PRIVATE KEY-----/)
+  })
+
   it('prefers the App when a token is also present', () => {
     stubEnv({ ...APP_ENV, GITHUB_TOKEN: 'ghp_example' })
     expect(githubAuthOptions()).toHaveProperty('authStrategy')
