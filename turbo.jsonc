@@ -2,6 +2,14 @@
   "$schema": "./node_modules/turbo/schema.json",
   "ui": "stream",
   "cacheMaxAge": "14d",
+  // Set for the whole Vercel build process but only read by apps/docs;
+  // declaring them once here keeps turbo from warning about undeclared
+  // env vars on every other app's build task.
+  "globalPassThroughEnv": [
+    "DOCS_GITHUB_APP_ID",
+    "DOCS_GITHUB_APP_INSTALLATION_ID",
+    "DOCS_GITHUB_APP_PRIVATE_KEY",
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
