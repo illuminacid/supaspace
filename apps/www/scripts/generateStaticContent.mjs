@@ -366,13 +366,15 @@ try {
 // Missing secret: warns and skips outside Vercel, but fails Vercel builds so they can't
 // publish stale generated changelog files. Generic CI (typecheck/lint on GitHub Actions)
 // has no access to this secret and isn't publishing anything, so it only warns too.
+// Set CHANGELOG_SYNC_OPTIONAL to warn-and-skip on Vercel too — for forks/personal
+// deployments without access to the private changelog-entries repo.
 async function generateChangelogContent() {
   const appId = process.env.CHANGELOG_SYNC_APP_ID
   const installationId = process.env.CHANGELOG_SYNC_APP_INSTALLATION_ID
   const privateKey = process.env.CHANGELOG_SYNC_APP_PRIVATE_KEY
 
   if (!appId || !installationId || !privateKey) {
-    if (process.env.VERCEL) {
+    if (process.env.VERCEL && !process.env.CHANGELOG_SYNC_OPTIONAL) {
       throw new Error('CHANGELOG_SYNC_APP_* env vars not set — cannot generate changelog content')
     }
     console.warn('⚠️  CHANGELOG_SYNC_APP_* env vars not set — skipping changelog RSS/md generation')
