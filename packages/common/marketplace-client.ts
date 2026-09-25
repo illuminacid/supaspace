@@ -78,8 +78,12 @@ export const SUPABASE_LISTING_OVERRIDES: Record<string, { name: string; slug: st
 }
 
 export const createMarketplaceClient = () => {
-  const API_URL = process.env.NEXT_PUBLIC_MARKETPLACE_API_URL || ''
-  const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MARKETPLACE_PUBLISHABLE_KEY || ''
+  // Placeholder fallbacks (not ''): createClient validates the URL eagerly
+  // and throws on an empty string, which would crash any caller that
+  // constructs this client at module load time when unconfigured.
+  const API_URL = process.env.NEXT_PUBLIC_MARKETPLACE_API_URL || 'http://localhost:54321'
+  const PUBLISHABLE_KEY =
+    process.env.NEXT_PUBLIC_MARKETPLACE_PUBLISHABLE_KEY || 'placeholder-anon-key'
 
   return createClient<Database>(API_URL, PUBLISHABLE_KEY, {
     auth: {

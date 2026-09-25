@@ -9,8 +9,12 @@ import type {
   ThreadSource,
 } from '~/types/contribute'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_CONTRIBUTE_URL as string
-const supabasePublishableKey = process.env.NEXT_PUBLIC_SUPABASE_CONTRIBUTE_PUBLISHABLE_KEY as string
+// Placeholder fallbacks (not an unchecked cast): createClient validates the
+// URL eagerly and throws, which would break the /contribute pages (rendered
+// as Server Components at build time) when this project isn't configured.
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_CONTRIBUTE_URL || 'http://localhost:54321'
+const supabasePublishableKey =
+  process.env.NEXT_PUBLIC_SUPABASE_CONTRIBUTE_PUBLISHABLE_KEY || 'placeholder-anon-key'
 
 function formatTimeAgo(date: Date): string {
   const now = new Date()
