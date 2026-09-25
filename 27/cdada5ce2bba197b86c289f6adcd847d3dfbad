@@ -1,0 +1,23 @@
+apps/docs/turbo.jsonc
+  s_9c18305fb35527::t_a6a3140771e8a0 21-24
+apps/www/turbo.jsonc
+  s_9c18305fb35527::t_1634ef0c477611 6,9,18
+apps/docs/public/markdown/manifest.json
+  s_9c18305fb35527::t_b66518a90a0da6 1-852
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "27cdada5ce2bba197b86c289f6adcd847d3dfbad",
+  "prompts": {},
+  "sessions": {
+    "s_9c18305fb35527": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "94a39be5-a003-4d28-95b9-c7badf6d2fdb",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Dawid Kuder <luminacid@gmail.com>"
+    }
+  }
+}
