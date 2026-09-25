@@ -79,6 +79,13 @@ describe('githubAuthOptions', () => {
     expect(githubAuthOptions).toThrow(/DOCS_GITHUB_APP_PRIVATE_KEY not set\. Set all three/)
   })
 
+  it('rejects a non-numeric installation ID instead of letting Octokit fail deep inside auth-app', () => {
+    stubEnv({ ...APP_ENV, DOCS_GITHUB_APP_INSTALLATION_ID: 'undefined' })
+    expect(githubAuthOptions).toThrow(
+      /DOCS_GITHUB_APP_INSTALLATION_ID is set but not a plain integer/
+    )
+  })
+
   it('names every credential option when none is set', () => {
     stubEnv({})
     expect(githubAuthOptions).toThrow(/DOCS_GITHUB_APP_ID/)

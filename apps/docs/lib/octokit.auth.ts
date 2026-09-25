@@ -1,5 +1,5 @@
-import { createAppAuth } from '@octokit/auth-app'
 import crypto from 'node:crypto'
+import { createAppAuth } from '@octokit/auth-app'
 
 type AppAuth = { appId: string; installationId: string; privateKey: string }
 
@@ -32,6 +32,11 @@ export function githubAuthOptions():
   const privateKey = process.env.DOCS_GITHUB_APP_PRIVATE_KEY
 
   if (appId && installationId && privateKey) {
+    if (!/^\d+$/.test(installationId.trim())) {
+      throw new Error(
+        `DOCS_GITHUB_APP_INSTALLATION_ID is set but not a plain integer: ${JSON.stringify(installationId)}. Check for stray quotes, whitespace, or an unresolved variable reference in the Vercel/CI config.`
+      )
+    }
     return {
       authStrategy: createAppAuth,
       auth: {
