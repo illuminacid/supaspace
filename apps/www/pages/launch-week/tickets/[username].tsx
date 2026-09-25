@@ -1,12 +1,12 @@
-import { NextSeo } from 'next-seo'
-import dayjs from 'dayjs'
-import Error from 'next/error'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { LW15_DATE, LW15_TITLE, LW15_URL, SITE_ORIGIN } from 'lib/constants'
-import { Lw15ConfDataProvider, UserTicketData } from 'components/LaunchWeek/15/hooks/use-conf-data'
 import { createClient } from '@supabase/supabase-js'
-import DefaultLayout from 'components/Layouts/Default'
+import { Lw15ConfDataProvider, UserTicketData } from 'components/LaunchWeek/15/hooks/use-conf-data'
 import LW15TicketPage from 'components/LaunchWeek/15/Ticketing/LW15TicketPage'
+import DefaultLayout from 'components/Layouts/Default'
+import dayjs from 'dayjs'
+import { LW15_DATE, LW15_TITLE, LW15_URL, SITE_ORIGIN } from 'lib/constants'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { NextSeo } from 'next-seo'
+import Error from 'next/error'
 import { useRouter } from 'next/router'
 
 interface Props {
@@ -75,10 +75,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const username = params?.username?.toString() || null
   let user
 
-  const supabaseAdmin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.LIVE_SUPABASE_COM_SERVICE_ROLE_KEY!
-  )
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseServiceRoleKey = process.env.LIVE_SUPABASE_COM_SERVICE_ROLE_KEY
 
   // fetch the normal ticket
   // stores the og images in supabase storage
@@ -87,9 +85,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     `${SITE_ORIGIN}/api-v2/ticket-og?username=${encodeURIComponent(username ?? '')}`
   )
 
-  // fetch a specific user
-  if (username) {
-    const { data, error } = await supabaseAdmin!
+  // fetch a specific user; skipped when Supabase isn't configured (e.g. a
+  // fork not connected to a Supabase project) so the build doesn't crash on
+  // this cosmetic ticket-sharing page.
+  if (username && supabaseUrl && supabaseServiceRoleKey) {
+    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey)
+
+    const { data, error } = await supabaseAdmin
       .from('tickets_view')
       .select('name, username, ticket_number, metadata, role, company, location')
       .eq('launch_week', 'lw15')

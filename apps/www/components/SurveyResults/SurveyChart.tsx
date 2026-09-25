@@ -15,10 +15,12 @@ import {
 
 import { TwoOptionToggle } from '../../../studio/components/ui/TwoOptionToggle'
 
-// Separate Supabase client for survey project
+// Separate Supabase client for survey project. Placeholder fallbacks (not
+// unset) since createClient validates eagerly at module load and would
+// otherwise crash every page importing this when the survey project isn't configured.
 const externalSupabase = createClient(
-  process.env.NEXT_PUBLIC_SURVEY_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SURVEY_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SURVEY_SUPABASE_URL || 'http://localhost:54321',
+  process.env.NEXT_PUBLIC_SURVEY_SUPABASE_ANON_KEY || 'placeholder-anon-key'
 )
 
 // Sentinel for “no filter”
