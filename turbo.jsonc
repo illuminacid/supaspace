@@ -11,6 +11,7 @@
     "DOCS_GITHUB_APP_PRIVATE_KEY",
     "CHANGELOG_SYNC_OPTIONAL",
     "SKIP_ASSET_UPLOAD",
+    "FORCE_ASSET_CDN",
   ],
   "tasks": {
     "build": {
