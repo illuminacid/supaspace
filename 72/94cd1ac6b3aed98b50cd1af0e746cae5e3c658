@@ -1,0 +1,19 @@
+turbo.jsonc
+  s_9c18305fb35527::t_8213875103f2bf 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "7294cd1ac6b3aed98b50cd1af0e746cae5e3c658",
+  "prompts": {},
+  "sessions": {
+    "s_9c18305fb35527": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "94a39be5-a003-4d28-95b9-c7badf6d2fdb",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Dawid Kuder <luminacid@gmail.com>"
+    }
+  }
+}
