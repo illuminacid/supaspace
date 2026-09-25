@@ -1,0 +1,22 @@
+apps/www/scripts/generateStaticContent.mjs
+  s_9c18305fb35527::t_aee4b346d585f7 369-370
+  s_9c18305fb35527::t_120ef7a1a2911e 377
+apps/www/turbo.jsonc
+  s_9c18305fb35527::t_1c17f84e2004eb 68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b7f92d53aba677e521da48ed9be7edd1efa25395",
+  "prompts": {},
+  "sessions": {
+    "s_9c18305fb35527": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "94a39be5-a003-4d28-95b9-c7badf6d2fdb",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Dawid Kuder <luminacid@gmail.com>"
+    }
+  }
+}
