@@ -235,7 +235,7 @@ if (changelogSlugs.some((s) => !s.startsWith('changelog/'))) {
 }
 
 if (changelogSlugs.length === 0) {
-  if (process.env.VERCEL) {
+  if (process.env.VERCEL && !process.env.CHANGELOG_SYNC_OPTIONAL) {
     console.error(
       '❌ No changelog slugs found in public/changelog — changelog generation produced nothing.'
     )
