@@ -1,0 +1,28 @@
+apps/www/components/SurveyResults/SurveyChart.tsx
+  s_9c18305fb35527::t_acf2a198cee5bb 18-20,22-23
+apps/www/lib/supabase.ts
+  s_9c18305fb35527::t_33d54a21d7b922 5-9,11-12
+  s_9c18305fb35527::t_3f574114a36cd0 2
+apps/www/pages/launch-week/tickets/[username].tsx
+  s_9c18305fb35527::t_071672093da258 78-79,88-94
+  s_9c18305fb35527::t_f7af4ff544ac07 2,4-9
+apps/www/pages/launch-week/8/index.tsx
+  s_9c18305fb35527::t_b164169cbbabc2 27
+  s_9c18305fb35527::t_42c96efa27e645 3-10,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "0bc4bdf9eed85d08c30a676fdb09b64e090c9381",
+  "prompts": {},
+  "sessions": {
+    "s_9c18305fb35527": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "94a39be5-a003-4d28-95b9-c7badf6d2fdb",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Dawid Kuder <luminacid@gmail.com>"
+    }
+  }
+}
