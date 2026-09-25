@@ -1,0 +1,20 @@
+apps/studio/csp.ts
+  s_9c18305fb35527::t_315d7f5c5e0f67 1-18
+  s_9c18305fb35527::t_80d0d71431c4c1 32,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "fee3dc89041e4353c11e1195cfb0b778ccc389b4",
+  "prompts": {},
+  "sessions": {
+    "s_9c18305fb35527": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "94a39be5-a003-4d28-95b9-c7badf6d2fdb",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Dawid Kuder <luminacid@gmail.com>"
+    }
+  }
+}
