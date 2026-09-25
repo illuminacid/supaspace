@@ -1,13 +1,21 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL
-  ? new URL(process.env.NEXT_PUBLIC_API_URL).origin
-  : ''
-const SUPABASE_URL = process.env.SUPABASE_URL ? new URL(process.env.SUPABASE_URL).origin : ''
-const GOTRUE_URL = process.env.NEXT_PUBLIC_GOTRUE_URL
-  ? new URL(process.env.NEXT_PUBLIC_GOTRUE_URL).origin
-  : ''
-const MARKETPLACE_API_URL = process.env.NEXT_PUBLIC_MARKETPLACE_API_URL
-  ? new URL(process.env.NEXT_PUBLIC_MARKETPLACE_API_URL).origin
-  : ''
+// Some of these env vars (e.g. NEXT_PUBLIC_GOTRUE_URL in the checked-in .env
+// template) are `$OTHER_VAR`-style self-references that rely on Next.js's own
+// env-expansion. Vercel's separate vercel.ts evaluation step (which imports
+// this module transitively) doesn't expand them, so a truthy-but-malformed
+// value must not crash module load — fall back to '' like an unset one.
+function safeOrigin(url: string | undefined): string {
+  if (!url) return ''
+  try {
+    return new URL(url).origin
+  } catch {
+    return ''
+  }
+}
+
+const API_URL = safeOrigin(process.env.NEXT_PUBLIC_API_URL)
+const SUPABASE_URL = safeOrigin(process.env.SUPABASE_URL)
+const GOTRUE_URL = safeOrigin(process.env.NEXT_PUBLIC_GOTRUE_URL)
+const MARKETPLACE_API_URL = safeOrigin(process.env.NEXT_PUBLIC_MARKETPLACE_API_URL)
 
 const SUPABASE_PROJECTS_URL = 'https://*.supabase.co https://*.storage.supabase.co'
 const SUPABASE_PROJECTS_URL_WS = 'wss://*.supabase.co'
@@ -21,14 +29,10 @@ if (SUPABASE_URL) {
 }
 
 // Needed to test docs search in local dev
-const SUPABASE_DOCS_PROJECT_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
-  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).origin
-  : ''
+const SUPABASE_DOCS_PROJECT_URL = safeOrigin(process.env.NEXT_PUBLIC_SUPABASE_URL)
 
 // Needed to test docs content API in local dev
-const SUPABASE_CONTENT_API_URL = process.env.NEXT_PUBLIC_CONTENT_API_URL
-  ? new URL(process.env.NEXT_PUBLIC_CONTENT_API_URL).origin
-  : ''
+const SUPABASE_CONTENT_API_URL = safeOrigin(process.env.NEXT_PUBLIC_CONTENT_API_URL)
 
 const isDevOrStaging =
   process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' ||
